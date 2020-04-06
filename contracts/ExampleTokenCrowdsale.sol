@@ -1,4 +1,4 @@
-pragma solidity >=0.4.24 <0.6.0;
+pragma solidity ^0.4.24;
 
 
 import 'openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol';
@@ -31,7 +31,8 @@ contract ExampleTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale{
     internal
   {
     super._preValidatePurchase(_beneficiary, _weiAmount);
-    uint256 _existingContribution = contributions[_beneficiary];
+
+	uint256 _existingContribution = contributions[_beneficiary];
     uint256 _newContribution = _existingContribution.add(_weiAmount);
     require(_newContribution >= investorMinCap && _newContribution <= investorHardCap);
 	contributions[_beneficiary] = _newContribution;     
